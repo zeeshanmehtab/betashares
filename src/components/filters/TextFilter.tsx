@@ -1,6 +1,8 @@
+import { Dispatch, SetStateAction } from "react";
+
 export function TextFilter({filters, setFilters, filterLabel, filterName, placeholder}: {
     filters: { [key: string]: string }, 
-    setFilters: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>,
+    setFilters: Dispatch<SetStateAction<{ [key: string]: string }>>,
     filterLabel: string,
     filterName: string,
     placeholder: string
@@ -13,7 +15,7 @@ export function TextFilter({filters, setFilters, filterLabel, filterName, placeh
                 type="text"
                 value={filters[`${filterName}`]}
                 onChange={(e) => setFilters({ ...filters, [`${filterName}`]: e.target.value })} 
-                placeholder="e.g. Technology"
+                placeholder={placeholder}
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"
             />
         </div>

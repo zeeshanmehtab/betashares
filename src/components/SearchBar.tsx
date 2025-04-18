@@ -1,6 +1,8 @@
+import { Dispatch, SetStateAction } from "react";
+
 export function SearchBar({query, setQuery}: {
     query: string, 
-    setQuery: React.Dispatch<React.SetStateAction<string>>
+    setQuery: Dispatch<SetStateAction<string>>
 }) {
     return (
         <div className="max-w-6xl mx-auto mb-6 relative">
