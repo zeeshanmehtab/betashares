@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 export function TextFilter({filters, setFilters, filterLabel, filterName, placeholder}: {
-    filters: { [key: string]: string }, 
+    filters: { [key: string]: any }, 
     setFilters: Dispatch<SetStateAction<{ [key: string]: string }>>,
     filterLabel: string,
     filterName: string,
@@ -14,7 +14,7 @@ export function TextFilter({filters, setFilters, filterLabel, filterName, placeh
             <input
                 type="text"
                 value={filters[`${filterName}`]}
-                onChange={(e) => setFilters({ ...filters, [`${filterName}`]: e.target.value })} 
+                onChange={(e) => setFilters({ ...filters, [`${filterName}`]: e.target.value.split(',') })} 
                 placeholder={placeholder}
                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"
             />

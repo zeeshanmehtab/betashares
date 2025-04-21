@@ -4,39 +4,47 @@ import { SearchBar} from './SearchBar';
 import { SearchWrapper } from './SearchWrapper';
 import { Sidebar } from './Sidebar';
 import { SearchResults } from './SearchResults';
-import { SingleResult } from './SingleResult';
-import { Pagination } from './Pagination';
-import { SearchSuggestions } from './SearchSuggestions';
-import { results } from '../data/results.ts';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { SearchContext } from '../context/SearchContext';
+import { Footer } from './Footer';
 
 export function App() {
 
     const [query, setQuery] = useState<string>('');
-    const [filters, setFilters] = useState<{[key: string]: string }>({ 
-        min_fund_size: '', 
-        max_fund_size: '', 
-        min_management_fee: '', 
-        max_management_fee: '' ,
-        min_one_year_return: '', 
-        max_one_year_return: '' ,
-        min_five_year_return: '', 
-        max_five_year_return: '' ,
+    const [filters, setFilters] = useState<{[key: string]: any }>({ 
+        fund_size: {min: '', max: ''},
+        management_fee: {min: '', max: ''}, 
+        one_year_return: {min: '', max: ''},
+        five_year_return: {min: '', max: ''}, 
         fund_category: ''
     });
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [resultsPerPage, setResultsPerPage] = useState<number>(10);
+    const [totalResults, setTotalResults] = useState<number>(0);
+    const [sortBy, setSortBy] = useState<string>('fund_size_asc');
+    const [startSearch, setStartSearch] = useState<boolean>(false);
+    const [pauseSuggestions, setPauseSuggestions] = useState<boolean>(false);
     
     return (
         <>
         <Header />
-        <MainWrapper> 
-            <SearchBar query={query} setQuery={setQuery} />
+        <SearchContext value={{ filters, setFilters, query, setQuery, sortBy, setSortBy, currentPage, setCurrentPage, resultsPerPage, setResultsPerPage, totalResults, setTotalResults, startSearch, setStartSearch, pauseSuggestions, setPauseSuggestions }}>
+        <MainWrapper>
+            <SearchBar/>
             <SearchWrapper>
-                <Sidebar filters={filters} setFilters={setFilters} />
-                <SearchResults results={results}>
-                    <Pagination />
-                </SearchResults>
+                <Sidebar />
+                <main className="md:col-span-3 space-y-4">
+                    {/* <ErrorBoundary fallback={<div className="flex flex-wrap items-center justify-between gap-4">Something went wrong</div>}> */}
+                        {/* <Suspense fallback={<div className="flex flex-wrap items-center justify-between gap-4"><LoaderCircle className="animate-spin" /></div>}> */}
+                            <SearchResults />
+                        {/* </Suspense> */}
+                    {/* </ErrorBoundary> */}
+                </main>
             </SearchWrapper>
         </MainWrapper>
+        </SearchContext>
+        <Footer />
         </>
     );
 }

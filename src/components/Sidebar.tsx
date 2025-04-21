@@ -1,11 +1,12 @@
 import { MinMaxFilter } from "./filters/MinMaxFilter";
 import { TextFilter } from "./filters/TextFilter";
-import { Dispatch, SetStateAction } from "react";
+import { use } from "react";
+import { SearchContext } from "../context/SearchContext";
 
-export function Sidebar({filters, setFilters}: {
-    filters: { [key: string]: string }, 
-    setFilters: Dispatch<SetStateAction<{ [key: string]: string }>>;
-}) {
+export function Sidebar() {
+
+    const {filters, setFilters} = use(SearchContext);
+
     return (
         <aside className="bg-white p-4 rounded-lg shadow space-y-6">
         <h2 className="text-xl font-semibold">Filters</h2>
@@ -21,7 +22,7 @@ export function Sidebar({filters, setFilters}: {
 
 
         {/* Apply Filters Button */}
-        <button className="w-full bg-primary text-white py-2 px-4 rounded hover:bg-blue-800 transition">
+        <button className="w-full bg-primary text-white py-2 px-4 rounded hover:bg-orange-700 transition">
           Apply Filters
         </button>
       </aside>
