@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 export function MinMaxFilter({filters, setFilters, filterLabel, filterName, minplaceholder, maxplaceholder}: {
-    filters: { [key: string]: string }, 
+    filters: { [key: string]: any }, 
     setFilters: Dispatch<SetStateAction<{ [key: string]: any }>>,
     filterLabel: string,
     filterName: string,

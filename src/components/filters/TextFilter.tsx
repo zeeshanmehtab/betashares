@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 
 export function TextFilter({filters, setFilters, filterLabel, filterName, placeholder}: {
     filters: { [key: string]: any }, 
-    setFilters: Dispatch<SetStateAction<{ [key: string]: string }>>,
+    setFilters: Dispatch<SetStateAction<{ [key: string]: any }>>,
     filterLabel: string,
     filterName: string,
     placeholder: string

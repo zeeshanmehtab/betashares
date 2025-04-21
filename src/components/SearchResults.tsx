@@ -8,7 +8,7 @@ import { search } from "../services/BetaShares";
 
 export function SearchResults() {
 
-    const {query, filters, setTotalResults, startSearch, setStartSearch, setPauseSuggestions, currentPage, resultsPerPage} = use(SearchContext);
+    const {query, filters, setTotalResults, startSearch, setStartSearch, setPauseSuggestions, currentPage, resultsPerPage, orderBy} = use(SearchContext);
     const [results, setResults] = useState<{[key: string]: any}>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
@@ -19,7 +19,7 @@ export function SearchResults() {
         setIsLoading(true);
         setPauseSuggestions(true); // Pause suggestions when searching
 
-        search(query, filters, currentPage, resultsPerPage).then((response) => {
+        search(query, filters, currentPage, resultsPerPage, orderBy).then((response) => {
             let results = response.data.results;
             setTotalResults(response.data.count);
             // console.log("COUNT", response.data.count);
@@ -40,7 +40,7 @@ export function SearchResults() {
     useEffect(() => {
         getResults();
         
-    }, [startSearch, filters, currentPage]);
+    }, [startSearch, filters, currentPage, orderBy]);
 
     return (    
         <>

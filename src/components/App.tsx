@@ -17,19 +17,22 @@ export function App() {
         management_fee: {min: '', max: ''}, 
         one_year_return: {min: '', max: ''},
         five_year_return: {min: '', max: ''}, 
-        fund_category: ''
+        fund_category: '',
+        // investment_suitability: '',
+        // management_approach: '',    
+        // dividend_frequency: ''
     });
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [resultsPerPage, setResultsPerPage] = useState<number>(10);
     const [totalResults, setTotalResults] = useState<number>(0);
-    const [sortBy, setSortBy] = useState<string>('fund_size_asc');
+    const [orderBy, setOrderBy] = useState<string>('');
     const [startSearch, setStartSearch] = useState<boolean>(false);
     const [pauseSuggestions, setPauseSuggestions] = useState<boolean>(false);
     
     return (
         <>
         <Header />
-        <SearchContext value={{ filters, setFilters, query, setQuery, sortBy, setSortBy, currentPage, setCurrentPage, resultsPerPage, setResultsPerPage, totalResults, setTotalResults, startSearch, setStartSearch, pauseSuggestions, setPauseSuggestions }}>
+        <SearchContext value={{ filters, setFilters, query, setQuery, orderBy, setOrderBy, currentPage, setCurrentPage, resultsPerPage, setResultsPerPage, totalResults, setTotalResults, startSearch, setStartSearch, pauseSuggestions, setPauseSuggestions }}>
         <MainWrapper>
             <SearchBar/>
             <SearchWrapper>

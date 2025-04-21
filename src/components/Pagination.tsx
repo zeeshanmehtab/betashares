@@ -3,7 +3,7 @@ import { SearchContext } from "../context/SearchContext";
 
 export function Pagination() {
 
-    const {currentPage, totalResults, setCurrentPage} = use(SearchContext);
+    const {currentPage, totalResults, setCurrentPage, setOrderBy} = use(SearchContext);
 
     return (
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -27,12 +27,16 @@ export function Pagination() {
                 )}
                 
             </div>
-            <div className="flex gap-2 items-center">
-                <select className="border p-2 rounded-2xl shadow-sm">
-                <option>Sort by</option>
-                <option>Name</option>
-                <option>Location</option>
-                <option>Popularity</option>
+            <div className="flexitems-center">
+                <select 
+                    className="border p-2 rounded-2xl shadow-sm"
+                    onChange={(e) => setOrderBy(e.target.value)}
+                >
+                    <option value="">Sort by</option>
+                    <option value="one_year_return.asc">One Year Return - Asc</option>
+                    <option value="one_year_return.desc">One Year Return - Desc</option>
+                    <option value="five_year_return.asc">Five Year Return - Asc</option>
+                    <option value="five_year_return.desc">Five Year Return - Desc</option>
                 </select>
             </div>
         </div>

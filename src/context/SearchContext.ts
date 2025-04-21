@@ -5,8 +5,8 @@ export const SearchContext = createContext<{
     setFilters: React.Dispatch<React.SetStateAction<{ [key: string]: string }>>
     query: string;
     setQuery: React.Dispatch<React.SetStateAction<string>>;
-    sortBy: string;
-    setSortBy: React.Dispatch<React.SetStateAction<string>>;
+    orderBy: string;
+    setOrderBy: React.Dispatch<React.SetStateAction<string>>;
     currentPage: number;
     setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     resultsPerPage: number;

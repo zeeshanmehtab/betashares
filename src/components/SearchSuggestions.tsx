@@ -1,12 +1,15 @@
+import { LoaderCircle } from "lucide-react";
 import { SearchContext } from "../context/SearchContext";
 import { suggest } from "../services/OpenAI";
-import { use, useState, useEffect } from "react";
+import { use, useState, useEffect, Dispatch, SetStateAction } from "react";
 import slugify from "react-slugify";
 
-export function SearchSuggestions(props) {
+export function SearchSuggestions({suggestions, setSuggestions}: {
+    suggestions: [], 
+    setSuggestions: Dispatch<SetStateAction<[]>>
+}) {
     
     const {query, setQuery, setStartSearch, pauseSuggestions, setPauseSuggestions} = use(SearchContext);
-    const [suggestions, setSuggestions] = useState<[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     
@@ -39,6 +42,7 @@ export function SearchSuggestions(props) {
     
     return (
         <>
+        {isLoading && <div className="flex flex-wrap items-center justify-between gap-4"><LoaderCircle className="animate-spin" /></div>}
         {suggestions.length > 0 && query &&
         <div className="absolute top-full mt-1 w-full bg-white border border-gray-200 rounded-lg shadow z-10">
             <ul>  
