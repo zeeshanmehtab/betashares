@@ -17,10 +17,10 @@ export function App() {
         management_fee: {min: '', max: ''}, 
         one_year_return: {min: '', max: ''},
         five_year_return: {min: '', max: ''}, 
-        fund_category: '',
-        // investment_suitability: '',
-        // management_approach: '',    
-        // dividend_frequency: ''
+        fund_category: [],
+        investment_suitability: [],
+        management_approach: [],
+        dividend_frequency: []
     });
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [resultsPerPage, setResultsPerPage] = useState<number>(10);

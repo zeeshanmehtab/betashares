@@ -16,11 +16,9 @@ export function Sidebar() {
         <MinMaxFilter filters={filters} setFilters={setFilters} filterLabel="One Year Return ($)" filterName="one_year_return" minplaceholder="0" maxplaceholder="10000" />
         <MinMaxFilter filters={filters} setFilters={setFilters} filterLabel="Five Year Return ($)" filterName="five_year_return" minplaceholder="0" maxplaceholder="10000" />
         <TextFilter filters={filters} setFilters={setFilters} filterLabel="Fund Category" filterName="fund_category" placeholder="Eg. Australian equities" />
-        {/* 
-        Filters returning bad 400 error
         <TextFilter filters={filters} setFilters={setFilters} filterLabel="Investment Suitability" filterName="investment_suitability" placeholder="Eg. Capital growth" />
         <TextFilter filters={filters} setFilters={setFilters} filterLabel="Management Approach" filterName="management_approach" placeholder="Eg. Active or passive" />
-        <TextFilter filters={filters} setFilters={setFilters} filterLabel="Dividend Frequency" filterName="dividend_frequency" placeholder="Eg. Quarterly" /> */}
+        <TextFilter filters={filters} setFilters={setFilters} filterLabel="Dividend Frequency" filterName="dividend_frequency" placeholder="Eg. Quarterly" />
 
 
         {/* Apply Filters Button */}
